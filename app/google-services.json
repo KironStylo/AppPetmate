@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "302028120599",
+    "firebase_url": "https://petmate-303bb-default-rtdb.firebaseio.com",
+    "project_id": "petmate-303bb",
+    "storage_bucket": "petmate-303bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302028120599:android:1ef2fd290efe10466bb252",
+        "android_client_info": {
+          "package_name": "com.example.petmate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARdab1rKwTQWCT_ANiYR2iM2UalvPfL6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

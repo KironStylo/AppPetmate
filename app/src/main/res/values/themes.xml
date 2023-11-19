@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Petmate" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color-->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/secondaryColor</item>
+    </style>
+
+    <style name="Theme.Petmate" parent="Base.Theme.Petmate" />
+</resources>
