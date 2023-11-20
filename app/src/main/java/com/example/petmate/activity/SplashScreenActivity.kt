@@ -19,7 +19,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed(
             {
-                if(user == null){
+                if(user == null || true){
                     startActivity(Intent(this,LoginActivity::class.java));
                 }else{
                     startActivity(Intent(this,MainActivity::class.java))

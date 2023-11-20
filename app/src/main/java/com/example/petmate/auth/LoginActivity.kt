@@ -12,13 +12,18 @@ import com.example.petmate.databinding.ActivityLoginBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding;
     // Autenticadores de Firebase
-    private lateinit var firebaseAuth: FirebaseAuth;
-    private lateinit var authStateListener: FirebaseAuth;
+    companion object{
+        lateinit var firebaseAuth: FirebaseAuth;
+        lateinit var firebaseStorage: FirebaseStorage;
+        lateinit var firebaseDatabase: FirebaseDatabase;
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +38,8 @@ class LoginActivity : AppCompatActivity() {
 
         // Inicializar la variable de firebase
         firebaseAuth = Firebase.auth;
+        firebaseStorage = FirebaseStorage.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
         // Iniciar sesión
         btnLogin.setOnClickListener()
