@@ -8,7 +8,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myloadingbutton.MyLoadingButton
+import com.example.petmate.MainActivity
 import com.example.petmate.databinding.ActivityLoginBinding
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -33,8 +35,8 @@ class LoginActivity : AppCompatActivity() {
         // Botones
         val btnLogin : Button = binding.loginBtn;
         val btnSignUp: Button = binding.signBtn;
-        val txtEmail : TextView = binding.fieldCorreo;
-        val txtPass : TextView = binding.fieldPassword;
+        val txtEmail : TextInputEditText = binding.fieldCorreo;
+        val txtPass : TextInputEditText = binding.fieldPassword;
 
         // Inicializar la variable de firebase
         firebaseAuth = Firebase.auth;
@@ -63,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
                 val user = firebaseAuth.currentUser
                 Toast.makeText(baseContext,user?.uid.toString(),Toast.LENGTH_SHORT).show()
                 // Ir a la página de Main
+                startActivity(Intent(this,MainActivity::class.java))
             }
             else{
                 Toast.makeText(baseContext,"Error de Email y/o Contraseña",Toast.LENGTH_SHORT).show()

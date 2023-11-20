@@ -4,7 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.petmate.MainActivity
@@ -45,6 +48,9 @@ class RegisterActivity : AppCompatActivity() {
         val password: TextInputEditText = binding.fieldPassword;
         val nombreMascota: TextInputEditText = binding.fieldDog;
 
+        // Mensaje
+        val mensaje: TextView = binding.txtImagen;
+
         // Boton de continuar
         val btnContinuar: Button = binding.continuar;
         val btnImagen: CircleImageView = binding.petImage;
@@ -53,6 +59,23 @@ class RegisterActivity : AppCompatActivity() {
         btnImagen.setOnClickListener {
             selectImage.launch("image/*")
         }
+
+        // Pone un mensaje en tiempo real
+        nombreMascota.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                mensaje.text = "Mi nombre es " + nombreMascota.text.toString();
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if(nombreMascota.text.toString().isEmpty()){
+                    mensaje.text = "Mi nombre es ...";
+                }
+            }
+
+        })
 
 
         // Crear un listener para crear un usuario de autenticación
