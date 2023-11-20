@@ -56,5 +56,7 @@ dependencies {
     implementation("com.github.yatindeokar:MyLoadingButton:v1.0.1")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation ("com.github.yuyakaido:CardStackView:v2.3.4")
+
 
 }
