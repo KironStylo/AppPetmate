@@ -1,7 +1,8 @@
 package com.example.petmate.model
 
 data class User (
-    val email: String? = "",
-    val password: String?= "",
-    val pet: Pet = Pet()
+    var email: String? = "",
+    var password: String?= "",
+    var ciudad: String?="",
+    var pet: Pet = Pet()
 )

@@ -88,8 +88,12 @@ class DatingFragment : Fragment() {
                    if(snapshot.exists()){
                        // Lista de los usuarios
                        lista  = arrayListOf<User>()
+                       val key = snapshot.key;
+                       Log.d("Llave", key.toString());
                        for(data in snapshot.children){
+
                            val usuario = data.getValue(User::class.java)
+
                            // Se agrega el usuario a la lista
                            lista.add(usuario!!)
                        }

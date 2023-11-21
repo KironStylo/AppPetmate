@@ -1,9 +1,10 @@
 package com.example.petmate.model
 
 data class Pet(
-    val name : String?="",
-    val breed: String?="",
-    val age : Int?=0,
-    val gender : String?="",
-    val image:  String?="",
+    var name : String?="",
+    var breed: String?="",
+    var age : Int?=0,
+    var weight: Int?=0,
+    var gender : String?="",
+    var image:  String?="",
 )

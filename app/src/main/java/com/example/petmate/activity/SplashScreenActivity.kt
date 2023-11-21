@@ -8,6 +8,7 @@ import android.os.Looper
 import com.example.petmate.MainActivity
 import com.example.petmate.R
 import com.example.petmate.auth.LoginActivity
+import com.example.petmate.auth.RegisterPetActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed(
             {
-                if(user == null || true){
+                if(user == null){
                     startActivity(Intent(this,LoginActivity::class.java));
                 }else{
                     startActivity(Intent(this,MainActivity::class.java))

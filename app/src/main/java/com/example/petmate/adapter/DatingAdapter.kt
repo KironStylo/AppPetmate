@@ -20,7 +20,6 @@ class DatingAdapter(val context: Context, val list: ArrayList<User>): RecyclerVi
 
     override fun getItemCount(): Int {
         return list.size;
-        
     }
 
     override fun onBindViewHolder(holder: DatingViewHolder, position: Int) {

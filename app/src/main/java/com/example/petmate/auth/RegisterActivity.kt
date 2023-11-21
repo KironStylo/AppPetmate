@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -17,6 +18,7 @@ import com.example.petmate.model.Pet
 import com.example.petmate.model.User
 import com.example.petmate.utils.Config
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 import de.hdodenhof.circleimageview.CircleImageView
 
 
@@ -104,7 +106,7 @@ class RegisterActivity : AppCompatActivity() {
 
         // Crea una carpeta para almacenar imagenes del usuario
         val storageRef = LoginActivity.firebaseStorage.getReference("perfiles")
-            .child(LoginActivity.firebaseAuth.currentUser!!.uid)
+            .child(FirebaseAuth.getInstance().currentUser!!.uid)
             .child("profile.jpg");
 
         //Almcenar la imagen
@@ -139,7 +141,7 @@ class RegisterActivity : AppCompatActivity() {
                 if(it.isSuccessful){
                     Toast.makeText(this, "Usuario registrado",Toast.LENGTH_SHORT).show()
                     // Redirigir a la página de home
-                    startActivity(Intent(this,MainActivity::class.java))
+                    startActivity(Intent(this,RegisterPetActivity::class.java))
                 }
                 else{
                     Toast.makeText(this, "Usuario no pudo ser registrado",Toast.LENGTH_SHORT).show()
@@ -151,6 +153,7 @@ class RegisterActivity : AppCompatActivity() {
             if(it.isSuccessful){
                 // Continuar con el registro de usuario
                 Toast.makeText(this, "Usuario creado!", Toast.LENGTH_SHORT).show();
+                Log.d("Usuario Creado","Usuario Creado")
             }
         }.addOnFailureListener {
             Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show();
