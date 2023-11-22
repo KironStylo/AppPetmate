@@ -30,8 +30,7 @@ class DatingFragment : Fragment() {
     private lateinit var binding: FragmentDatingBinding;
     // Manejador de las cartas
     private lateinit var manager : CardStackLayoutManager;
-    // Lista de usuarios en la base de datos
-    private lateinit var lista:ArrayList<User>;
+
     //  Variables de Firebase
     private lateinit var firebaseDatabase: FirebaseDatabase;
 
@@ -61,7 +60,7 @@ class DatingFragment : Fragment() {
 
             // Arrastar la carta
             override fun onCardSwiped(direction: Direction?) {
-                if(manager!!.topPosition == lista.size){
+                if(manager!!.topPosition == lista!!.size){
                     Toast.makeText(requireContext(), "Ultimo carta",Toast.LENGTH_SHORT).show()
                 }
             }
@@ -87,6 +86,10 @@ class DatingFragment : Fragment() {
         manager.setDirections(Direction.HORIZONTAL);
     }
 
+    companion object{
+        // Lista de usuarios en la base de datos
+        var lista:ArrayList<User>?=null;
+    }
 
     private fun getData() {
        firebaseDatabase.getReference("users")
@@ -104,20 +107,20 @@ class DatingFragment : Fragment() {
                            val usuario = data.getValue(User::class.java)
 
                            // Se agrega el usuario a la lista
-                           lista.add(usuario!!)
+                           lista!!.add(usuario!!)
                        }
                        // Inicializar las cartas
                        init()
 
                        binding.cardStackView.layoutManager = manager;
                        binding.cardStackView.itemAnimator = DefaultItemAnimator();
-                       binding.cardStackView.adapter = DatingAdapter(requireContext(),lista);
+                       binding.cardStackView.adapter = DatingAdapter(requireContext(),lista!!);
 
 
                        // Para que presente los usuarios en orden aleatorio
-                       lista.shuffle()
+                       lista!!.shuffle()
 
-                       binding.cardStackView.adapter = DatingAdapter(requireContext(),lista)
+                       binding.cardStackView.adapter = DatingAdapter(requireContext(),lista!!)
                    }else{
                        Toast.makeText(requireContext(),"Algo salió mal",Toast.LENGTH_SHORT).show()
                        // Devolver a Usuario a pantalla de Login
