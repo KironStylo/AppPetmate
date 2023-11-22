@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.lang.Exception
 
 class MessageFragment : Fragment() {
 
@@ -36,14 +37,16 @@ class MessageFragment : Fragment() {
     private fun getData() {
         // Para abrir la pantalla de carga
         Config.showDialog(requireContext())
-        var list = arrayListOf<String>();
-        var newList = arrayListOf<String>();
         val  currentId = FirebaseAuth.getInstance().currentUser!!.uid;
 
         // Se obtiene la referencia de donde se guardan los chats
         FirebaseDatabase.getInstance().getReference("chats")
             .addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
+
+                    var list = arrayListOf<String>();
+                    var newList = arrayListOf<String>();
+
                     for(data in snapshot.children){
                         if(data.key!!.contains(currentId!!)){
                             list.add(data.key!!.replace(currentId!!,""))
@@ -51,8 +54,14 @@ class MessageFragment : Fragment() {
                         }
 
                     }
-                    binding.recyclerView.adapter =
-                        MessageUserAdapter(requireContext(), list!!, newList);
+
+                    try{
+                        binding.recyclerView.adapter =
+                            MessageUserAdapter(requireContext(), list, newList);
+                    }
+                    catch(e: Exception){
+
+                    }
 
                     Config.hideDialog();
 

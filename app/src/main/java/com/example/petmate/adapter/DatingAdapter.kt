@@ -33,7 +33,7 @@ class DatingAdapter(val context: Context, val list: ArrayList<User>): RecyclerVi
         // Para iniciar el chat con el otro usuario
         holder.binding.chat.setOnClickListener {
             val inte = Intent(context, com.example.petmate.activity.MessageActivity::class.java)
-            inte.putExtra("userid", list[position].uid)
+            inte.putExtra("userId", list[position].uid)
             context.startActivity(inte)
         }
     };
