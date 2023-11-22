@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Petmate"
         tools:targetApi="31">
         <activity
-            android:name=".auth.RegisterPetActivity"
+            android:name=".activity.MessageActivity"
             android:exported="false" />
         <activity
             android:name=".activity.SplashScreenActivity"

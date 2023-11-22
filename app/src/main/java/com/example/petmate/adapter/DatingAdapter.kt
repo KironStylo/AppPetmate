@@ -1,6 +1,7 @@
 package com.example.petmate.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -29,5 +30,10 @@ class DatingAdapter(val context: Context, val list: ArrayList<User>): RecyclerVi
         holder.binding.textView3.text = list[position].pet.breed;
         // Se carga la imagen del perro
         Glide.with(context).load(list[position].pet.image).into(holder.binding.userImage)
+        holder.binding.chat.setOnClickListener {
+            val inte = Intent(context, com.example.petmate.activity.MessageActivity::class.java)
+            inte.putExtra("userid", list[position].email)
+            context.startActivity(inte)
+        }
     };
 }
