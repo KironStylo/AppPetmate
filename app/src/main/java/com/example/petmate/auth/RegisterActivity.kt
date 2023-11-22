@@ -34,6 +34,9 @@ class RegisterActivity : AppCompatActivity() {
     // Uri de la imagen
     private var imageUri: Uri? = null
 
+    // Uid del usuario
+    private lateinit var uid: String;
+
     // Variables de Firebase
     private lateinit var  firebaseDatabase: FirebaseDatabase;
 
@@ -156,6 +159,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun storeData(imageUrl: Uri?) {
         val data = User(
+            uid = uid,
             email = binding.fieldCorreo.text.toString(),
             pet = Pet(
                 name = binding.fieldDog.text.toString(),
@@ -171,7 +175,8 @@ class RegisterActivity : AppCompatActivity() {
                 if(it.isSuccessful){
                     Toast.makeText(this, "Usuario registrado",Toast.LENGTH_SHORT).show()
                     // Redirigir a la página de home
-                    startActivity(Intent(this,RegisterPetActivity::class.java))
+                    Log.d("Register Activity","Se registro el usuario");
+                    startActivity(Intent(this,MainActivity::class.java))
                 }
                 else{
                     Toast.makeText(this, "Usuario no pudo ser registrado",Toast.LENGTH_SHORT).show()
@@ -183,6 +188,7 @@ class RegisterActivity : AppCompatActivity() {
         firebaseAuth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener{
                 if(it.isSuccessful){
+                    uid = firebaseAuth.uid.toString();
                     Toast.makeText(this,"Usuario fue creado!", Toast.LENGTH_LONG).show();
                     uploadImage();
                 }

@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.petmate.R
 import com.example.petmate.auth.LoginActivity
+import com.example.petmate.auth.RegisterActivity
+import com.example.petmate.auth.RegisterPetActivity
 import com.example.petmate.databinding.FragmentProfileBinding
 import com.example.petmate.model.User
 import com.example.petmate.utils.Config
@@ -70,6 +72,10 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(requireContext(),LoginActivity::class.java));
             // Terminar fragmento
             requireActivity().finish()
+        }
+
+        binding.edit.setOnClickListener {
+            startActivity(Intent(requireContext(), RegisterPetActivity::class.java));
         }
 
 

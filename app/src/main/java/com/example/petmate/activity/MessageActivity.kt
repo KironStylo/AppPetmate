@@ -2,6 +2,7 @@ package com.example.petmate.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.petmate.R
 import com.example.petmate.databinding.ActivityMessageBinding
@@ -30,17 +31,22 @@ class MessageActivity : AppCompatActivity() {
 
     private fun sendMessage(msg: String) {
         val receiverId = intent.getStringExtra("userid")
-        val senderid = FirebaseAuth.getInstance().currentUser!!.email
+        val senderid = FirebaseAuth.getInstance().currentUser!!.uid;
         val currentDate: String = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
         val currentTime: String = SimpleDateFormat("HH:mm a", Locale.getDefault()).format(Date())
 
         val chatId=senderid+receiverId
+
+        // Mensajes para Devs
+        Log.d("Chat iniciado", chatId);
+
         val map = hashMapOf<String, String>()
         map["mensaje"]=msg
         map["senderid"]=senderid!!
         map["currentTime"]=currentTime
         map["currentDate"]=currentDate
-        val reference = FirebaseDatabase.getInstance().getReference("cahts").child(chatId)
+
+        val reference = FirebaseDatabase.getInstance().getReference("chats").child(chatId)
         reference.child(reference.push().key!!).setValue(map).addOnCompleteListener {
                 if(it.isSuccessful){
                     binding.mensaje.text=null//No se pa que sirve

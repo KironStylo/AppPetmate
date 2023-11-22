@@ -137,6 +137,7 @@ class RegisterPetActivity : AppCompatActivity() {
                 validateData();
             }
 
+
         }
 
     }
@@ -183,7 +184,7 @@ class RegisterPetActivity : AppCompatActivity() {
                     reference.setValue(existingUser).addOnCompleteListener {
                         if (it.isSuccessful) {
                             Toast.makeText(this@RegisterPetActivity,"Usuarios enviados",Toast.LENGTH_SHORT).show();
-                            startActivity(Intent(this@RegisterPetActivity,LoginActivity::class.java))
+                            startActivity(Intent(this@RegisterPetActivity,MainActivity::class.java))
                         }
                     }
                 }

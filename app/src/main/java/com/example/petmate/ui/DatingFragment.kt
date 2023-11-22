@@ -16,6 +16,7 @@ import com.example.petmate.auth.LoginActivity
 import com.example.petmate.databinding.FragmentDatingBinding
 import com.example.petmate.model.User
 import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -106,9 +107,12 @@ class DatingFragment : Fragment() {
 
                            val usuario = data.getValue(User::class.java)
 
-                           // Se agrega el usuario a la lista
-                           lista!!.add(usuario!!)
+                           if(!usuario!!.uid.equals(Firebase.auth.uid)  ){
+                               // Se agrega el usuario a la lista desde que no sea el mismo
+                               lista!!.add(usuario!!)
+                           }
                        }
+
                        // Inicializar las cartas
                        init()
 
