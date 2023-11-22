@@ -6,6 +6,8 @@
     <color name="secondaryColor">#912F56</color>
     <color name="light_gray">#ECECEC</color>
     <color name="Rojo">#D32D2D</color>
+    <color name="Azul">#2DB2D3</color>
+    <color name="transparent">#00FFFFFF</color>
     <color name="Naranja">#EF4A4A</color>
     <color name="Rosado">#F36363</color>
     <color name="Amarillo">#F8FFAE</color>

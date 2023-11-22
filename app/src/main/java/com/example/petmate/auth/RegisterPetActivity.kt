@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,8 +22,12 @@ import com.example.petmate.R
 import com.example.petmate.databinding.ActivityRegisterPetBinding
 import com.example.petmate.model.User
 import com.example.petmate.utils.Config
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import org.json.JSONObject
 import java.io.IOException
@@ -35,11 +41,25 @@ class RegisterPetActivity : AppCompatActivity() {
     private lateinit var dialog :  Dialog;
 
     private lateinit var razas : List<String>;
+
+    private var selectedText:String ="" ;
+
+    // Variables de Firebase
+    private lateinit var firebaseDatabase: FirebaseDatabase;
+    private lateinit var firebaseAuth: FirebaseAuth;
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Poner la vista
+
         binding = ActivityRegisterPetBinding.inflate(layoutInflater);
         setContentView(binding.root);
+
+        // Instanciar variables de firebase
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = Firebase.auth;
+
 
         // Vista de texto
         val razasTxt : TextView = binding.raza;
@@ -101,6 +121,17 @@ class RegisterPetActivity : AppCompatActivity() {
                 dialog.dismiss();
             }
 
+            // Listener para el radio button
+            val radioGroup: RadioGroup = binding.radioGroup;
+
+            radioGroup.setOnCheckedChangeListener{group,checkId->
+                val radioButton: RadioButton = findViewById(checkId)
+
+                // Seleccionar el texto del botón
+                 selectedText = radioButton.text.toString();
+
+            }
+
             // Continuar a la página principal
             registrarMascota.setOnClickListener {
                 validateData();
@@ -113,7 +144,9 @@ class RegisterPetActivity : AppCompatActivity() {
     private fun validateData(){
         if(binding.raza.text.toString().isEmpty() ||
             binding.txtEdad.text.toString().isEmpty() ||
-            binding.txtPeso.text.toString().isEmpty()){
+            binding.txtPeso.text.toString().isEmpty() ||
+            selectedText.toString().isEmpty()
+            ){
             Toast.makeText(this,"Por favor llena tus datos",Toast.LENGTH_LONG).show();
         }else{
             saveData()
@@ -124,8 +157,7 @@ class RegisterPetActivity : AppCompatActivity() {
     private fun saveData() {
         Config.showDialog(this)
 
-        val reference =
-            LoginActivity.firebaseDatabase.getReference("users").child(LoginActivity.firebaseAuth.currentUser!!.uid)
+        val reference = firebaseDatabase.getReference("users").child(firebaseAuth.currentUser!!.uid)
 
         // Se colocan los nuevos datos del usuario a su mascota
         reference.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -145,6 +177,7 @@ class RegisterPetActivity : AppCompatActivity() {
                         it.pet.breed = raza
                         it.pet.age = edad ?: 0 // Handle null case, set default value if needed
                         it.pet.weight = peso ?: 0 // Handle null case, set default value if needed
+                        it.pet.gender = selectedText
                     }
 
                     reference.setValue(existingUser).addOnCompleteListener {

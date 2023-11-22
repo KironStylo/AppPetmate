@@ -18,7 +18,11 @@ import com.example.petmate.model.Pet
 import com.example.petmate.model.User
 import com.example.petmate.utils.Config
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import de.hdodenhof.circleimageview.CircleImageView
 
 
@@ -29,6 +33,15 @@ class RegisterActivity : AppCompatActivity() {
 
     // Uri de la imagen
     private var imageUri: Uri? = null
+
+    // Variables de Firebase
+    private lateinit var  firebaseDatabase: FirebaseDatabase;
+
+    private lateinit var firebaseAuth: FirebaseAuth;
+
+    private lateinit var firebaseStorage: FirebaseStorage;
+
+
 
     // Obtener la imagen de la galeria
     private val selectImage = registerForActivityResult(
@@ -44,6 +57,19 @@ class RegisterActivity : AppCompatActivity() {
 // Poner la vista
         binding = ActivityRegisterBinding.inflate(layoutInflater);
         setContentView(binding.root);
+
+
+        // Inicializar las variables de Firebase
+        firebaseAuth = Firebase.auth;
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
+
+        if(firebaseAuth.currentUser != null){
+            Toast.makeText(this,"Hay un usuario activo",Toast.LENGTH_SHORT).show();
+            firebaseAuth.signOut();
+        }
+
+
 
         // Datos
         val email: TextInputEditText = binding.fieldCorreo;
@@ -96,8 +122,7 @@ class RegisterActivity : AppCompatActivity() {
         else{
             // Crear usuario en Firebase
             signUp(email,password);
-            // Subir la imagen del usuario bajo su ID en Firebase
-            uploadImage()
+            Log.d("Register Activity","Se ha registrado el usuario")
         }
     }
 
@@ -105,15 +130,20 @@ class RegisterActivity : AppCompatActivity() {
         Config.showDialog(this);
 
         // Crea una carpeta para almacenar imagenes del usuario
-        val storageRef = LoginActivity.firebaseStorage.getReference("perfiles")
-            .child(FirebaseAuth.getInstance().currentUser!!.uid)
+        val firebaseStorage = FirebaseStorage.getInstance();
+        val firebaseAuth = Firebase.auth;
+
+        val storageRef = firebaseStorage.getReference("perfiles")
+            .child(firebaseAuth.currentUser!!.uid)
             .child("profile.jpg");
+
 
         //Almcenar la imagen
         storageRef.putFile(imageUri!!)
             .addOnSuccessListener {
                 storageRef.downloadUrl.addOnSuccessListener {
-                    storeData(it)
+                    Toast.makeText(this, "Imagen de mascota subida",Toast.LENGTH_LONG).show();
+                    storeData(it);
                 }.addOnFailureListener {
                     Config.hideDialog()
                     Toast.makeText(this, "No pudimos subir la imagen", Toast.LENGTH_SHORT).show()
@@ -134,8 +164,8 @@ class RegisterActivity : AppCompatActivity() {
         )
 
         // Almacener los datos
-        LoginActivity.firebaseDatabase.getReference("users")
-            .child(LoginActivity.firebaseAuth.currentUser!!.uid)
+        firebaseDatabase.getReference("users")
+            .child(firebaseAuth.currentUser!!.uid)
             .setValue(data).addOnCompleteListener{
                 Config.hideDialog()
                 if(it.isSuccessful){
@@ -149,14 +179,15 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
     private fun signUp(email:String,  password:String){
-        LoginActivity.firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener{
-            if(it.isSuccessful){
-                // Continuar con el registro de usuario
-                Toast.makeText(this, "Usuario creado!", Toast.LENGTH_SHORT).show();
-                Log.d("Usuario Creado","Usuario Creado")
+
+        firebaseAuth.createUserWithEmailAndPassword(email,password)
+            .addOnCompleteListener{
+                if(it.isSuccessful){
+                    Toast.makeText(this,"Usuario fue creado!", Toast.LENGTH_LONG).show();
+                    uploadImage();
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this,"Error al crear el usuario",Toast.LENGTH_LONG).show()
             }
-        }.addOnFailureListener {
-            Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show();
-        }
     }
 }

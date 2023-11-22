@@ -21,11 +21,9 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding;
     // Autenticadores de Firebase
-    companion object{
-        lateinit var firebaseAuth: FirebaseAuth;
-        lateinit var firebaseStorage: FirebaseStorage;
-        lateinit var firebaseDatabase: FirebaseDatabase;
-    }
+    private lateinit var firebaseAuth: FirebaseAuth;
+    private lateinit var firebaseStorage: FirebaseStorage;
+    private lateinit var firebaseDatabase: FirebaseDatabase;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -80,6 +80,7 @@
                         ></TextView>
 
                 </RelativeLayout>
+
                 <LinearLayout
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
@@ -150,6 +151,61 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sexo"
+                        ></TextView>
+                    <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:background="@drawable/custom_radio_selector"
+                            android:button="@color/transparent"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:textAlignment="center"
+                            android:text="Macho"
+                            android:textColor="@drawable/custom_radio_text"
+                            android:scaleX="0.5"
+                            android:scaleY="0.5"
+                            android:drawableTint="@color/Azul"
+                            android:drawableTop="@drawable/ic_male">
+                        </RadioButton>
+                        <RadioButton
+                            android:background="@drawable/custom_radio_selector"
+                            android:button="@color/transparent"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:textAlignment="center"
+                            android:textColor="@drawable/custom_radio_text"
+                            android:text="Hembra"
+                            android:scaleX="0.5"
+                            android:scaleY="0.5"
+                            android:drawableTint="@color/Rosado"
+                            android:drawableTop="@drawable/ic_female">
+                        </RadioButton>
+
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
 
 
                 <Button

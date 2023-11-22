@@ -26,7 +26,7 @@ class DatingAdapter(val context: Context, val list: ArrayList<User>): RecyclerVi
         // Nombre de la mascota
         holder.binding.textView4.text = list[position].pet.name;
         // Correo del usuario
-        holder.binding.textView3.text = list[position].email;
+        holder.binding.textView3.text = list[position].pet.breed;
         // Se carga la imagen del perro
         Glide.with(context).load(list[position].pet.image).into(holder.binding.userImage)
     };

@@ -13,11 +13,19 @@ import com.example.petmate.databinding.FragmentProfileBinding
 import com.example.petmate.model.User
 import com.example.petmate.utils.Config
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.FirebaseDatabase
 
 class ProfileFragment : Fragment() {
 
     // Se necesita el binding
     private lateinit var binding : FragmentProfileBinding;
+
+    // Variables de Firebase
+    private lateinit var firebaseDatabase : FirebaseDatabase;
+    private lateinit var firebaseAuth : FirebaseAuth;
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,11 +33,15 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(layoutInflater)
 
+        // Se inicializan las variables de Firebase
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = Firebase.auth;
+
         Config.showDialog(requireContext())
 
         // Se trae los datos
-        LoginActivity.firebaseDatabase.getReference("users")
-            .child(LoginActivity.firebaseAuth.currentUser!!.uid!!).get()
+        firebaseDatabase.getReference("users")
+            .child(firebaseAuth.currentUser!!.uid!!).get()
             .addOnSuccessListener {
                 if(it.exists()){
                     val data = it.getValue(User::class.java);
@@ -54,7 +66,7 @@ class ProfileFragment : Fragment() {
 
         binding.logout.setOnClickListener{
             // Salir de la cuenta
-            LoginActivity.firebaseAuth.signOut();
+            firebaseAuth.signOut();
             startActivity(Intent(requireContext(),LoginActivity::class.java));
             // Terminar fragmento
             requireActivity().finish()

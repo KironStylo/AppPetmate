@@ -1,5 +1,6 @@
 package com.example.petmate.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,8 +15,10 @@ import com.example.petmate.adapter.DatingAdapter
 import com.example.petmate.auth.LoginActivity
 import com.example.petmate.databinding.FragmentDatingBinding
 import com.example.petmate.model.User
+import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
@@ -29,6 +32,9 @@ class DatingFragment : Fragment() {
     private lateinit var manager : CardStackLayoutManager;
     // Lista de usuarios en la base de datos
     private lateinit var lista:ArrayList<User>;
+    //  Variables de Firebase
+    private lateinit var firebaseDatabase: FirebaseDatabase;
+
 
 
     override fun onCreateView(
@@ -37,6 +43,9 @@ class DatingFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentDatingBinding.inflate(layoutInflater);
+
+        // Se instancia primero la base de datos
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
         // Obtenemos los datos que hay registrados en la base de datos
         getData()
@@ -80,7 +89,7 @@ class DatingFragment : Fragment() {
 
 
     private fun getData() {
-       LoginActivity.firebaseDatabase.getReference("users")
+       firebaseDatabase.getReference("users")
            .addValueEventListener(object: ValueEventListener{
                override fun onDataChange(snapshot: DataSnapshot) {
                    // Devuelve toda la información de la base de datos
@@ -111,6 +120,8 @@ class DatingFragment : Fragment() {
                        binding.cardStackView.adapter = DatingAdapter(requireContext(),lista)
                    }else{
                        Toast.makeText(requireContext(),"Algo salió mal",Toast.LENGTH_SHORT).show()
+                       // Devolver a Usuario a pantalla de Login
+                       startActivity(Intent(requireContext(),LoginActivity::class.java));
                    }
                }
 
