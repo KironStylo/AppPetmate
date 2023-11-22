@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -181,8 +181,8 @@
                             android:textAlignment="center"
                             android:text="Macho"
                             android:textColor="@drawable/custom_radio_text"
-                            android:scaleX="0.5"
-                            android:scaleY="0.5"
+                            android:scaleX="1"
+                            android:scaleY="1"
                             android:drawableTint="@color/Azul"
                             android:drawableTop="@drawable/ic_male">
                         </RadioButton>
@@ -192,10 +192,11 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:textAlignment="center"
+                            android:layout_marginHorizontal="12dp"
                             android:textColor="@drawable/custom_radio_text"
                             android:text="Hembra"
-                            android:scaleX="0.5"
-                            android:scaleY="0.5"
+                            android:scaleX="1"
+                            android:scaleY="1"
                             android:drawableTint="@color/Rosado"
                             android:drawableTop="@drawable/ic_female">
                         </RadioButton>
@@ -222,4 +223,4 @@
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

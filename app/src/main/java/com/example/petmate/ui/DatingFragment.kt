@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
+import com.yuyakaido.android.cardstackview.CardStackView
 import com.yuyakaido.android.cardstackview.Direction
 
 
@@ -62,7 +63,7 @@ class DatingFragment : Fragment() {
             // Arrastar la carta
             override fun onCardSwiped(direction: Direction?) {
                 if(manager!!.topPosition == lista!!.size){
-                    Toast.makeText(requireContext(), "Ultimo carta",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Ultima carta",Toast.LENGTH_SHORT).show()
                 }
             }
 
