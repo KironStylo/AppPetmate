@@ -38,8 +38,15 @@ Pantalla de Inicio luego de registrarse o de iniciar sesión. Es el punto de par
 
 -**Interfaz de chat**
 
+![image](https://github.com/KironStylo/AppPetmate/assets/87038591/07ec016d-153b-4d85-82b1-124f5e26c406)
 
+Interfaz de chat privado entre usuarios que se dieron like.
 
+-**Interfaz de perfil**
+
+![image](https://github.com/KironStylo/AppPetmate/assets/87038591/375ea190-7d7f-4187-b91c-5f04d12ebc34)
+
+Pantalla para Ingresar los datos de tu mascota.
 
 PetMate simplifica el proceso de encontrar compañeros para perros al actuar como un puente entre los dueños y una plataforma con una amplia variedad de posibles coincidencias. Los usuarios pueden verificar regularmente nuevos perfiles de perros, filtrando sus búsquedas según preferencias como raza, edad, temperamento y otros atributos.
 
