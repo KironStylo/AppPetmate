@@ -17,6 +17,8 @@ PetMate es una aplicación dedicada que se esfuerza por brindar el mejor servici
 En un mercado donde las opciones existentes pueden no cumplir con las expectativas del cliente, PetMate se destaca al abordar las necesidades específicas de los dueños de mascotas que buscan encontrar la pareja ideal para su mascota.
 
 ## Cómo Funciona
+### Pantallas:
+
 
 PetMate simplifica el proceso de encontrar compañeros para perros al actuar como un puente entre los dueños y una plataforma con una amplia variedad de posibles coincidencias. Los usuarios pueden verificar regularmente nuevos perfiles de perros, filtrando sus búsquedas según preferencias como raza, edad, temperamento y otros atributos.
 
