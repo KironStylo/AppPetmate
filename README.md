@@ -33,3 +33,5 @@ Obtén PetMate en la [Play Store](https://play.google.com/petmate) .
 ## Tecnologías Utilizadas
 
 PetMate está impulsado por tecnologías de vanguardia para ofrecer una experiencia sin inconvenientes para los usuarios. La aplicación está desarrollada por Dolphin Technologies, garantizando confiabilidad e innovación en cada aspecto.
+
+Se utilizó desarrollo nativo en Android para el desarrollo de esta aplicación con el lenguaje de programación Kotlin.Para el Backend, implementamos Firebase RealTime Database y Firebase Storage con el fin de guardar los usuarios y sus fotos respectivamente. Además, 
