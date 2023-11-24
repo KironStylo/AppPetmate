@@ -19,15 +19,21 @@ En un mercado donde las opciones existentes pueden no cumplir con las expectativ
 ## Cómo Funciona
 ### Pantallas:
 -**Login**
+
 ![image](https://github.com/KironStylo/AppPetmate/assets/87038591/1bc13b08-dffa-4894-8c7d-98f031280cd5)
+
 La primera pantalla con la que el usuario interactua. Esta pantalla tiene 2 botones los cuales permiten iniciar y autenticar una cuenta ya creada dentro de la base de datos o registrar una nueva cuenta
 
 -**Registro**
+
 ![image](https://github.com/KironStylo/AppPetmate/assets/87038591/f9c09c7b-0415-400d-baf5-a1b6c5a906dc)
+
 La pantalla de registro pide toda la información necesaria para crear el perfil de la mascota. Además, indica al usuario que debe aceptar los términos y condiciones de la aplicación
 
 -**Pantalla principal**
+
 ![image](https://github.com/KironStylo/AppPetmate/assets/87038591/a7069c54-5b87-44a7-b3cb-adf1d4546a4e)
+
 Pantalla de Inicio luego de registrarse o de iniciar sesión. Es el punto de partida hacia toda la aplicación y tiene el sistema de like o dislike de cada mascota
 
 
