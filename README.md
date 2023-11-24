@@ -36,6 +36,10 @@ La pantalla de registro pide toda la información necesaria para crear el perfil
 
 Pantalla de Inicio luego de registrarse o de iniciar sesión. Es el punto de partida hacia toda la aplicación y tiene el sistema de like o dislike de cada mascota
 
+-**Interfaz de chat**
+
+
+
 
 PetMate simplifica el proceso de encontrar compañeros para perros al actuar como un puente entre los dueños y una plataforma con una amplia variedad de posibles coincidencias. Los usuarios pueden verificar regularmente nuevos perfiles de perros, filtrando sus búsquedas según preferencias como raza, edad, temperamento y otros atributos.
 
@@ -53,4 +57,8 @@ Obtén PetMate en la [Play Store](https://play.google.com/petmate) .
 
 PetMate está impulsado por tecnologías de vanguardia para ofrecer una experiencia sin inconvenientes para los usuarios. La aplicación está desarrollada por Dolphin Technologies, garantizando confiabilidad e innovación en cada aspecto.
 
-Se utilizó desarrollo nativo en Android para el desarrollo de esta aplicación con el lenguaje de programación Kotlin.Para el Backend, implementamos Firebase RealTime Database y Firebase Storage con el fin de guardar los usuarios y sus fotos respectivamente. Además, 
+Se utilizó desarrollo nativo en Android para el desarrollo de esta aplicación con el lenguaje de programación Kotlin.Para el Backend, implementamos Firebase RealTime Database y Firebase Storage con el fin de guardar los usuarios y sus fotos respectivamente.
+
+**Arquitectura implementada**
+
+https://www.canva.com/design/DAFzD8He6kA/-uIngulJePF0H2JnWFelaA/edit
